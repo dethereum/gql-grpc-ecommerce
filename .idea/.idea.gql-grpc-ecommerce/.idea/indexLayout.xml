@@ -3,6 +3,7 @@
   <component name="ContentModelUserStore">
     <attachedFolders>
       <Path>api-gateway</Path>
+      <Path>protos</Path>
     </attachedFolders>
     <explicitIncludes />
     <explicitExcludes />

@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "protos", "protos\protos.csproj", "{FC646F92-2805-4DB7-8B96-89481647381B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC646F92-2805-4DB7-8B96-89481647381B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC646F92-2805-4DB7-8B96-89481647381B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC646F92-2805-4DB7-8B96-89481647381B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC646F92-2805-4DB7-8B96-89481647381B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

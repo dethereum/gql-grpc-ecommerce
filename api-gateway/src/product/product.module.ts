@@ -22,7 +22,7 @@ import { ProductQueryResolver } from './query.resolver';
           options: {
             url: configService.get<string>('PRODUCT_SVC_URL'),
             package: 'product',
-            protoPath: join(__dirname, '../../../protos/product.proto'),
+            protoPath: join(__dirname, '../../../protos/product/product.proto'),
             loader: {
               keepCase: true,
               enums: String,

@@ -1,8 +1,7 @@
 /* eslint-disable */
-import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices';
+import { GrpcMethod } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
-import { Timestamp } from './google/protobuf/timestamp';
-import { Empty } from './google/protobuf/empty';
+import { Timestamp } from '../google/protobuf/timestamp';
 
 export const protobufPackage = 'product';
 
@@ -14,45 +13,61 @@ export enum ProductStatus {
 }
 
 export interface GetProductRequest {
-  productId: number;
+  product_id: number;
 }
 
 export interface GetProductResponse {
-  product?:
-    | { $case: 'product_null'; product_null: boolean }
-    | { $case: 'product_value'; product_value: ProductModel };
+  /** always set this to "true" when null */
+  product_null: boolean | undefined;
+  product_value: ProductModel | undefined;
 }
 
 export interface GetAllProductsRequest {}
+
+export interface GetAllProductsResponse {
+  product: ProductModel | undefined;
+}
 
 export interface AddProductRequest {
   product: ProductModel | undefined;
 }
 
-export interface UpdateProductRequest {
+export interface AddProductResponse {
+  product: ProductModel | undefined;
+}
+
+export interface UpdateProductsRequest {
+  product: ProductModel | undefined;
+}
+
+export interface UpdateProductsResponse {
   product: ProductModel | undefined;
 }
 
 export interface DeleteProductRequest {
-  productId: number;
+  product_id: number;
 }
 
 export interface DeleteProductResponse {
   success: boolean;
 }
 
+export interface InsertBulkProductRequest {
+  product: ProductModel | undefined;
+}
+
 export interface InsertBulkProductResponse {
   success: boolean;
-  insertCount: number;
+  insert_count: number;
 }
 
 export interface ProductModel {
-  productId: number;
+  product_id: number;
   name: string;
   description: string;
   price: number;
   status: ProductStatus;
-  createdTime: Timestamp | undefined;
+  created_time: Timestamp | undefined;
 }
 
 export const PRODUCT_PACKAGE_NAME = 'product';
@@ -60,41 +75,45 @@ export const PRODUCT_PACKAGE_NAME = 'product';
 export interface ProductServiceClient {
   getProduct(request: GetProductRequest): Observable<GetProductResponse>;
 
-  getAllProducts(request: GetAllProductsRequest): Observable<ProductModel>;
+  getAllProducts(
+    request: GetAllProductsRequest,
+  ): Observable<GetAllProductsResponse>;
 
-  addProduct(request: AddProductRequest): Observable<ProductModel>;
+  addProduct(request: AddProductRequest): Observable<AddProductResponse>;
 
-  updateProducts(request: UpdateProductRequest): Observable<ProductModel>;
+  updateProducts(
+    request: UpdateProductsRequest,
+  ): Observable<UpdateProductsResponse>;
 
   deleteProduct(
     request: DeleteProductRequest,
   ): Observable<DeleteProductResponse>;
 
   insertBulkProduct(
-    request: Observable<ProductModel>,
+    request: InsertBulkProductRequest,
   ): Observable<InsertBulkProductResponse>;
-
-  test(request: Empty): Observable<Empty>;
 }
 
 export interface ProductServiceController {
   getProduct(request: GetProductRequest): Observable<GetProductResponse>;
 
-  getAllProducts(request: GetAllProductsRequest): Observable<ProductModel>;
+  getAllProducts(
+    request: GetAllProductsRequest,
+  ): Observable<GetAllProductsResponse>;
 
-  addProduct(request: AddProductRequest): Observable<ProductModel>;
+  addProduct(request: AddProductRequest): Observable<AddProductResponse>;
 
-  updateProducts(request: UpdateProductRequest): Observable<ProductModel>;
+  updateProducts(
+    request: UpdateProductsRequest,
+  ): Observable<UpdateProductsResponse>;
 
   deleteProduct(
     request: DeleteProductRequest,
   ): Observable<DeleteProductResponse>;
 
   insertBulkProduct(
-    request: Observable<ProductModel>,
+    request: InsertBulkProductRequest,
   ): Observable<InsertBulkProductResponse>;
-
-  test(request: Empty): void;
 }
 
 export function ProductServiceControllerMethods() {
@@ -105,7 +124,7 @@ export function ProductServiceControllerMethods() {
       'addProduct',
       'updateProducts',
       'deleteProduct',
-      'test',
+      'insertBulkProduct',
     ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(
@@ -113,18 +132,6 @@ export function ProductServiceControllerMethods() {
         method,
       );
       GrpcMethod('ProductService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
-    }
-    const grpcStreamMethods = ['insertBulkProduct'];
-    for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcStreamMethod('ProductService', method)(
         constructor.prototype[method],
         method,
         descriptor,

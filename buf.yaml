@@ -8,6 +8,8 @@ lint:
     - UNARY_RPC
     - PACKAGE_AFFINITY
     - OTHER
+  except:
+    - PACKAGE_VERSION_SUFFIX
 breaking:
   use:
     - FILE

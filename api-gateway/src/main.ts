@@ -12,6 +12,7 @@ async function bootstrap() {
 
   const configService: ConfigService = app.get(ConfigService);
 
+  const GRAPHQL_PORT = configService.get<number>('GRAPHQL_PORT');
   const isDev = configService.get<string>('NODE_ENV') == 'development';
 
   app.use(
@@ -24,7 +25,11 @@ async function bootstrap() {
 
   app.useLogger(app.get(Logger));
 
-  return app.listenAsync(configService.get<number>('GRAPHQL_PORT'));
+  await app.listenAsync(GRAPHQL_PORT);
+
+  console.log(
+    `[BOOTSTRAP]    click to view playground: http://localhost:${GRAPHQL_PORT}/`,
+  );
 }
 
 bootstrap();

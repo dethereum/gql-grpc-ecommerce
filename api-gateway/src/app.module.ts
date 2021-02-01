@@ -12,7 +12,7 @@ import { ProductModule } from './product/product.module';
     ConfigModule.forRoot(),
     LoggerModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
+      useFactory: (configService: ConfigService) => ({
         pinoHttp: {
           safe: true,
           prettyPrint: configService.get<string>('NODE_ENV') !== 'production',
@@ -22,7 +22,7 @@ import { ProductModule } from './product/product.module';
     }),
     GraphQLModule.forRootAsync({
       imports: [LoggerModule],
-      useFactory: async (logger: PinoLogger): Promise<GqlModuleOptions> => ({
+      useFactory: (logger: PinoLogger): GqlModuleOptions => ({
         path: '/',
         subscriptions: '/',
         typePaths: ['./**/*.graphql'],
@@ -46,7 +46,6 @@ import { ProductModule } from './product/product.module';
             },
           ],
         },
-        context: ({ req, res }): any => ({ req, res }),
       }),
       inject: [PinoLogger],
     }),

@@ -3,7 +3,7 @@ import { GraphQLDefinitionsFactory } from '@nestjs/graphql';
 
 const definitionsFactory = new GraphQLDefinitionsFactory();
 
-definitionsFactory.generate({
+void definitionsFactory.generate({
   typePaths: [join(__dirname, './schema/schema.graphql')],
   path: join(__dirname, 'typings.ts'),
   watch: false,

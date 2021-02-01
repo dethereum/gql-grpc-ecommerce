@@ -1,0 +1,13 @@
+version: v1beta1
+build:
+  roots:
+    - ./protos
+lint:
+  use:
+    - DEFAULT
+    - UNARY_RPC
+    - PACKAGE_AFFINITY
+    - OTHER
+breaking:
+  use:
+    - FILE

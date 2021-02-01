@@ -18,9 +18,9 @@ export interface GetProductRequest {
 }
 
 export interface GetProductResponse {
-  /** always set this to "true" when null */
-  product_null: boolean | undefined;
-  product_value: ProductModel | undefined;
+  product?:
+    | { $case: 'product_null'; product_null: boolean }
+    | { $case: 'product_value'; product_value: ProductModel };
 }
 
 export interface GetAllProductsRequest {}
@@ -78,36 +78,21 @@ export interface ProductServiceClient {
 }
 
 export interface ProductServiceController {
-  getProduct(
-    request: GetProductRequest,
-  ):
-    | Promise<GetProductResponse>
-    | Observable<GetProductResponse>
-    | GetProductResponse;
+  getProduct(request: GetProductRequest): Observable<GetProductResponse>;
 
   getAllProducts(request: GetAllProductsRequest): Observable<ProductModel>;
 
-  addProduct(
-    request: AddProductRequest,
-  ): Promise<ProductModel> | Observable<ProductModel> | ProductModel;
+  addProduct(request: AddProductRequest): Observable<ProductModel>;
 
-  updateProducts(
-    request: UpdateProductRequest,
-  ): Promise<ProductModel> | Observable<ProductModel> | ProductModel;
+  updateProducts(request: UpdateProductRequest): Observable<ProductModel>;
 
   deleteProduct(
     request: DeleteProductRequest,
-  ):
-    | Promise<DeleteProductResponse>
-    | Observable<DeleteProductResponse>
-    | DeleteProductResponse;
+  ): Observable<DeleteProductResponse>;
 
   insertBulkProduct(
     request: Observable<ProductModel>,
-  ):
-    | Promise<InsertBulkProductResponse>
-    | Observable<InsertBulkProductResponse>
-    | InsertBulkProductResponse;
+  ): Observable<InsertBulkProductResponse>;
 
   test(request: Empty): void;
 }

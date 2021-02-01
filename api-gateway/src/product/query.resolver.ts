@@ -2,23 +2,24 @@ import { Inject, OnModuleInit } from '@nestjs/common';
 import { ClientGrpcProxy } from '@nestjs/microservices';
 import { Args, Query, Resolver } from '@nestjs/graphql';
 
-import { PinoLogger } from 'nestjs-pino';
+import { PinoLogger, InjectPinoLogger } from 'nestjs-pino';
+import type { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import type { ProductServiceClient, GetProductRequest } from './_proto/product';
+import type { GetProductResponse } from '../graphql/typings';
+import type { ProductServiceClient } from './_proto/product';
 import { PRODUCT_SERVICE_NAME } from './_proto/product';
 
 @Resolver()
 export class ProductQueryResolver implements OnModuleInit {
-  private productServiceClient: ProductServiceClient;
+  private productServiceClient!: ProductServiceClient;
 
   constructor(
     @Inject('ProductGrpcClient')
     private readonly productGrpcClient: ClientGrpcProxy,
-
+    @InjectPinoLogger(ProductQueryResolver.name)
     private readonly logger: PinoLogger,
-  ) {
-    logger.setContext(ProductQueryResolver.name);
-  }
+  ) {}
 
   onModuleInit(): void {
     this.productServiceClient = this.productGrpcClient.getService<ProductServiceClient>(
@@ -27,11 +28,22 @@ export class ProductQueryResolver implements OnModuleInit {
   }
 
   @Query('productServiceGetProduct')
-  async getProduct(@Args('productId') productId: number) {
-    const { product_null, product_value } = await this.productServiceClient
-      .getProduct({ productId })
-      .toPromise();
+  getProduct(
+    @Args('productId') productId: number,
+  ): Observable<GetProductResponse> {
+    const product$ = this.productServiceClient.getProduct({ productId });
 
-    return product_null ? {productNull: true} : {productNull: false, productValue: product_value }
+    return product$.pipe(
+      map(({ product }) => {
+        return product && product.$case == 'product_value'
+          ? {
+              productNull: false,
+              productValue: product.product_value,
+            }
+          : {
+              productNull: true,
+            };
+      }),
+    );
   }
 }

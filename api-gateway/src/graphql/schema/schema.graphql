@@ -13,7 +13,7 @@ type ProductModel {
   name: String
   description: String
   price: Float
-  status: ProductStatus
+  status: ProductStatus!
   createdTime: GoogleProtobufTimestamp
 }
 enum ProductStatus {

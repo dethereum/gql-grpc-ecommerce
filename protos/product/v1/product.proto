@@ -1,25 +1,23 @@
 syntax = "proto3";
 
-package product;
-option csharp_namespace = "ProductGrpc.Protos";
+package product.v1;
+option csharp_namespace = "ProductGrpc.Protos.v1";
 
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/empty.proto";
 
 service ProductService {
   rpc GetProduct (GetProductRequest) returns (GetProductResponse);
-  rpc GetAllProducts (GetAllProductsRequest) returns ( stream ProductModel);
+  rpc GetAllProducts (GetAllProductsRequest) returns (GetAllProductsResponse);
 
-  rpc AddProduct (AddProductRequest) returns (ProductModel);
-  rpc UpdateProducts (UpdateProductRequest) returns (ProductModel);
+  rpc AddProduct (AddProductRequest) returns (AddProductResponse);
+  rpc UpdateProducts (UpdateProductsRequest) returns (UpdateProductsResponse);
   rpc DeleteProduct (DeleteProductRequest) returns (DeleteProductResponse);
 
-  rpc InsertBulkProduct (stream ProductModel) returns (InsertBulkProductResponse);
-  rpc Test (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc InsertBulkProduct (InsertBulkProductRequest) returns (InsertBulkProductResponse);
 }
 
 message GetProductRequest {
-  int32 productId = 1;
+  int32 product_id = 1;
 }
 
 message GetProductResponse {
@@ -31,34 +29,50 @@ message GetProductResponse {
 
 message GetAllProductsRequest {}
 
+message GetAllProductsResponse {
+  ProductModel product = 1;
+}
+
 message AddProductRequest {
   ProductModel product = 1;
 }
 
-message UpdateProductRequest {
+message AddProductResponse {
+  ProductModel product = 1;
+}
+
+message UpdateProductsRequest {
+  ProductModel product = 1;
+}
+
+message UpdateProductsResponse {
   ProductModel product = 1;
 }
 
 message DeleteProductRequest {
-  int32 productId = 1;
+  int32 product_id = 1;
 }
 
 message DeleteProductResponse {
   bool success = 1;
 }
 
+message InsertBulkProductRequest {
+  ProductModel product = 1;
+}
+
 message InsertBulkProductResponse {
   bool success = 1;
-  int32 insertCount = 2;
+  int32 insert_count = 2;
 }
 
 message ProductModel {
-  int32 productId = 1;
+  int32 product_id = 1;
   string name = 2;
   string description = 3;
   float price = 4;
   ProductStatus status = 5;
-  google.protobuf.Timestamp createdTime = 6;
+  google.protobuf.Timestamp created_time = 6;
 }
 
 enum ProductStatus {

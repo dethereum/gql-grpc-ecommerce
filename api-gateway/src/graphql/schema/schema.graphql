@@ -4,7 +4,7 @@ schema {
   subscription: Subscription
 }
 type Query {
-  productServiceGetProduct(input: GetProductRequestInput = {}): GetProductResponse
+  productServiceGetProduct(productId: Int): GetProductResponse
   productServicePing: ServerStatus
 }
 type GetProductResponse {
@@ -31,9 +31,7 @@ type GoogleProtobufTimestamp {
 }
 """The `BigInt` scalar type represents non-fractional signed whole numeric values."""
 scalar BigInt
-input GetProductRequestInput {
-  productId: Int
-}
+
 """status of the server"""
 type ServerStatus {
   status: String

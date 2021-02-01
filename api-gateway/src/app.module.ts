@@ -5,6 +5,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule, GqlModuleOptions } from '@nestjs/graphql';
 
 import { LoggerModule, PinoLogger } from 'nestjs-pino';
+
+import { ProductModule } from './product/product.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -48,6 +50,7 @@ import { LoggerModule, PinoLogger } from 'nestjs-pino';
       }),
       inject: [PinoLogger],
     }),
+    ProductModule,
   ],
 })
 export class AppModule {}

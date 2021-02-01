@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+package product;
 option csharp_namespace = "ProductGrpc.Protos";
 
 import "google/protobuf/timestamp.proto";

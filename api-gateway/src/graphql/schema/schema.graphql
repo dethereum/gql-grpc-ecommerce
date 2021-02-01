@@ -1,11 +1,8 @@
 schema {
   query: Query
-  mutation: Mutation
-  subscription: Subscription
 }
 type Query {
   productServiceGetProduct(productId: Int): GetProductResponse
-  productServicePing: ServerStatus
 }
 type GetProductResponse {
   productNull: Boolean
@@ -31,55 +28,3 @@ type GoogleProtobufTimestamp {
 }
 """The `BigInt` scalar type represents non-fractional signed whole numeric values."""
 scalar BigInt
-
-"""status of the server"""
-type ServerStatus {
-  status: String
-}
-type Mutation {
-  productServiceAddProduct(input: AddProductRequestInput = {}): ProductModel
-  productServiceUpdateProducts(input: UpdateProductRequestInput = {}): ProductModel
-  productServiceDeleteProduct(input: DeleteProductRequestInput = {}): DeleteProductResponse
-  productServiceInsertBulkProduct(input: ProductModelInput = {}): InsertBulkProductResponse
-  productServiceTest(input: GoogleProtobufEmptyInput = {}): GoogleProtobufEmpty
-}
-input AddProductRequestInput {
-  product: ProductModelInput
-}
-input ProductModelInput {
-  productId: Int
-  name: String
-  description: String
-  price: Float
-  status: ProductStatus
-  createdTime: GoogleProtobufTimestampInput
-}
-input GoogleProtobufTimestampInput {
-  seconds: BigInt
-  nanos: Int
-}
-input UpdateProductRequestInput {
-  product: ProductModelInput
-}
-type DeleteProductResponse {
-  success: Boolean
-}
-input DeleteProductRequestInput {
-  productId: Int
-}
-type InsertBulkProductResponse {
-  success: Boolean
-  insertCount: Int
-}
-type GoogleProtobufEmpty {
-  _: Boolean
-}
-input GoogleProtobufEmptyInput {
-  _: Boolean
-}
-type Subscription {
-  productServiceGetAllProducts(input: GetAllProductsRequestInput = {}): ProductModel
-}
-input GetAllProductsRequestInput {
-  _: Boolean
-}

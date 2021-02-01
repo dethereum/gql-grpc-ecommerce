@@ -18,9 +18,9 @@ export interface GetProductRequest {
 }
 
 export interface GetProductResponse {
-  product?:
-    | { $case: 'productNull'; productNull: boolean }
-    | { $case: 'productValue'; productValue: ProductModel };
+  /** always set this to "true" when null */
+  product_null: boolean | undefined;
+  product_value: ProductModel | undefined;
 }
 
 export interface GetAllProductsRequest {}

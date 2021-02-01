@@ -28,8 +28,10 @@ export class ProductQueryResolver implements OnModuleInit {
 
   @Query('productServiceGetProduct')
   async getProduct(@Args('productId') productId: number) {
-    const grpcReq: GetProductRequest = { productId };
+    const { product_null, product_value } = await this.productServiceClient
+      .getProduct({ productId })
+      .toPromise();
 
-    return this.productServiceClient.getProduct(grpcReq);
+    return product_null ? {productNull: true} : {productNull: false, productValue: product_value }
   }
 }

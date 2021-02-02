@@ -11,20 +11,20 @@ import { ProductStatus } from './product-status';
 @ObjectType()
 export class Product {
   @Field(() => Int)
-  productId!: number;
+  readonly productId!: number;
 
   @Field()
-  name!: string;
+  readonly name!: string;
 
   @Field()
-  description!: string;
+  readonly description!: string;
 
   @Field(() => Float)
-  price!: number;
+  readonly price!: number;
 
   @Field(() => ProductStatus)
-  status!: ProductStatus;
+  readonly status!: ProductStatus;
 
   @Field(() => GraphQLISODateTime)
-  createdTime!: Date;
+  readonly createdTime!: Date;
 }

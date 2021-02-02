@@ -11,12 +11,11 @@ async function bootstrap() {
 
   const configService: ConfigService = app.get(ConfigService);
 
-  const GRAPHQL_PORT = configService.get<number>('GRAPHQL_PORT');
-  if (!GRAPHQL_PORT)
-    throw new Error('GRAPHQL_PORT is undefined. Set GRAPHQL_PORT env variable');
+  const GRAPHQL_PORT = configService.get<number>('GRAPHQL_PORT') || 8000;
 
   const isDev = configService.get<string>('NODE_ENV') == 'development';
 
+  /* eslint-disable functional/no-expression-statement */
   app.use(
     cors({
       origin: '*',
@@ -34,7 +33,5 @@ async function bootstrap() {
   );
 }
 
-bootstrap().catch((e: unknown) => {
-  console.log('There was an error bootstraping the gql server');
-  console.error(e);
-});
+void bootstrap();
+/* eslint-enable functional/no-expression-statement */

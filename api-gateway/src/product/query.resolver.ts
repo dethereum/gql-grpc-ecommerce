@@ -4,7 +4,7 @@ import type { ProductServiceClient } from './_proto/product/product';
 import { Inject } from '@nestjs/common';
 import { Args, Int, Query, Resolver } from '@nestjs/graphql';
 import { ClientGrpcProxy } from '@nestjs/microservices';
-import { PinoLogger } from 'nestjs-pino';
+import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import { map } from 'rxjs/operators';
 
 import { PRODUCT_SERVICE_NAME } from './_proto/product/product';
@@ -12,17 +12,18 @@ import { Product } from './models/product.model';
 
 @Resolver(() => Product)
 export class ProductQueryResolver implements OnModuleInit {
+  // eslint-disable-next-line functional/prefer-readonly-type
   private productServiceClient!: ProductServiceClient;
 
   constructor(
     @Inject('ProductGrpcClient')
     private readonly productGrpcClient: ClientGrpcProxy,
+    @InjectPinoLogger('ProductQueryResolver')
     private readonly logger: PinoLogger,
-  ) {
-    logger.setContext(ProductQueryResolver.name);
-  }
+  ) {}
 
-  onModuleInit(): void {
+  onModuleInit() {
+    // eslint-disable-next-line functional/no-expression-statement, functional/immutable-data
     this.productServiceClient = this.productGrpcClient.getService<ProductServiceClient>(
       PRODUCT_SERVICE_NAME,
     );

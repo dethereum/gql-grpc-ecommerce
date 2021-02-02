@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "swc src -s -d ./dist",
+    "nest:build": "nest build",
     "start": "pnpm build && node dist/main.js",
     "gen:baseproto": "protoc -I=../protos --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_opt=returnObservable=true --ts_proto_opt=snakeToCamel=false --ts_proto_opt=unrecognizedEnum=false --ts_proto_opt=env=node --ts_proto_opt=nestJs=true",
     "gen:product": "pnpm gen:baseproto -- --ts_proto_out=./src/product/_proto product/product.proto",
@@ -50,6 +51,7 @@
     "@typescript-eslint/parser": "^4.14.1",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "7.2.0",
+    "eslint-plugin-functional": "^3.2.1",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-rxjs": "^3.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
@@ -97,7 +99,9 @@
     "atLeast": 100,
     "is": 100,
     "detail": true,
-    "ignoreFiles": ["src/**/_proto/**/*.ts"],
+    "ignoreFiles": [
+      "src/**/_proto/**/*.ts"
+    ],
     "project": "tsconfig.json",
     "strict": true
   }

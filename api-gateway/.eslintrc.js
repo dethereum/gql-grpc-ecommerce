@@ -4,11 +4,19 @@ module.exports = {
     project: './tsconfig.json',
     sourceType: 'module',
   },
-  plugins: ['simple-import-sort'],
+  plugins: [
+    'simple-import-sort',
+    "functional"
+  ],
   extends: [
     'eslint:recommended', 
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    "plugin:functional/external-recommended",
+    "plugin:functional/no-exceptions",
+    "plugin:functional/no-statements",
+    'plugin:functional/no-mutations',
+    "plugin:functional/stylitic",
     "plugin:rxjs/recommended",
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint',
@@ -16,7 +24,6 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    jest: true,
   },
   rules: {
     '@typescript-eslint/interface-name-prefix': 0,
@@ -44,4 +51,16 @@ module.exports = {
     "simple-import-sort/exports": 2,
     "sort-imports": 0,
   },
+  overrides: [
+    {
+      files: ["*.spec.ts", "*.e2e-spec.ts"],
+      env: {
+        jest: true,
+      },
+      rules: {
+        "functional/no-expression-statement": 0,
+        "functional/no-let": 0,
+      },
+    },
+  ],
 };

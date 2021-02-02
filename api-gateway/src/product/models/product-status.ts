@@ -7,6 +7,7 @@ export enum ProductStatus {
   PRODUCT_STATUS_NONE,
 }
 
+// eslint-disable-next-line functional/no-expression-statement
 registerEnumType(ProductStatus, {
   name: 'ProductStatus',
 });

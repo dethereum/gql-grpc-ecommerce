@@ -14,12 +14,13 @@ dependencies:
   grpc: 1.24.4
   nestjs-pino: 1.3.0
   reflect-metadata: 0.1.13
-  rimraf: 3.0.2
   rxjs: 6.6.3
 devDependencies:
   '@nestjs/cli': 7.5.4
   '@nestjs/schematics': 7.2.7_typescript@4.1.3
   '@nestjs/testing': 7.6.8_ef6b35325312848799509ed193f71ca1
+  '@swc/cli': 0.1.34_@swc+core@1.2.47
+  '@swc/core': 1.2.47
   '@types/express': 4.17.11
   '@types/jest': 26.0.20
   '@types/node': 14.14.22
@@ -1344,6 +1345,10 @@ packages:
       node: '>= 10.14.2'
     resolution:
       integrity: sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ==
+  /@napi-rs/triples/1.0.2:
+    dev: true
+    resolution:
+      integrity: sha512-EL3SiX43m9poFSnhDx4d4fn9SSaqyO2rHsCNhETi9bWPmjXK3uPJ0QpPFtx39FEdHcz1vJmsiW41kqc0AgvtzQ==
   /@nestjs/cli/7.5.4:
     dependencies:
       '@angular-devkit/core': 11.0.3
@@ -1598,6 +1603,13 @@ packages:
         optional: true
     resolution:
       integrity: sha512-Jz9LNbgEMDLvijlBfWJnbAfWxj8I838Uk2EKwsDMjOl7plDvaYxmvu2B2QFQyAR7wK7VBZsAv7KiojvvFbHz+g==
+  /@node-rs/helper/1.1.0:
+    dependencies:
+      '@napi-rs/triples': 1.0.2
+      tslib: 2.1.0
+    dev: true
+    resolution:
+      integrity: sha512-r43YnnrY5JNzDuXJdW3sBJrKzvejvFmFWbiItUEoBJsaPzOIWFMhXB7i5j4c9EMXcFfxveF4l7hT+rLmwtjrVQ==
   /@nodelib/fs.scandir/2.1.4:
     dependencies:
       '@nodelib/fs.stat': 2.0.4
@@ -1697,6 +1709,144 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MZPUxrmFubI36XS1DI3qmI0YdN1gks62JtFZvxR67ljjSNCeK6U08Zx4msEWOXuofgqUt6zPHSi1H9fbjR/NRA==
+  /@swc/cli/0.1.34_@swc+core@1.2.47:
+    dependencies:
+      '@swc/core': 1.2.47
+      commander: 2.20.3
+      convert-source-map: 1.7.0
+      fs-readdir-recursive: 1.1.0
+      glob: 7.1.6
+      interpret: 2.2.0
+      lodash: 4.17.20
+      mkdirp: 0.5.5
+      output-file-sync: 2.0.1
+      path: 0.12.7
+      rechoir: 0.7.0
+      slash: 2.0.0
+      source-map: 0.7.3
+    dev: true
+    hasBin: true
+    peerDependencies:
+      '@swc/core': ^1.2.4
+    resolution:
+      integrity: sha512-cVdO8wYN1RJyEPHL+oeIzy7fJV4k0YZWbd03R2ZuFkq4BWBK4svOU3OjXCP4D3U0y8nV9NQPAjfHUGUPoRAfqQ==
+  /@swc/core-android-arm64/1.2.47:
+    cpu:
+      - arm64
+    dev: true
+    engines:
+      node: '>=10'
+    optional: true
+    os:
+      - android
+    resolution:
+      integrity: sha512-N11TLGtK+pKPFCcimg07CnJCj8qKqPbyAx8a5z2CW2+qtAB1a8XpK9njl5ExA3mxrur9qa9ITb0OPNBjojb7nw==
+  /@swc/core-darwin-arm64/1.2.47:
+    cpu:
+      - arm64
+    dev: true
+    engines:
+      node: '>=10'
+    optional: true
+    os:
+      - darwin
+    resolution:
+      integrity: sha512-HRdUR6wd2w3mky8j6tOpL4j2MMsAFWSe7KfgPOCwlIWPlprlK1ACB0r+BmqpwC+REYnWoUG+dtPmpX1UdqGShQ==
+  /@swc/core-darwin-x64/1.2.47:
+    cpu:
+      - x64
+    dev: true
+    engines:
+      node: '>=10'
+    optional: true
+    os:
+      - darwin
+    resolution:
+      integrity: sha512-Sp6D+Nyw6n4tDl4SxcGpK/FxoX/GDSMhvNunmoTL0KJjRCNe8SJO83jsv6YLJSCV+q6hl+x6XeiZ0JzKGzFjfQ==
+  /@swc/core-linux-arm-gnueabihf/1.2.47:
+    cpu:
+      - arm
+    dev: true
+    engines:
+      node: '>=10'
+    optional: true
+    os:
+      - linux
+    resolution:
+      integrity: sha512-U6ZfRloE1UFjhmyFptlAk5HACAzSTEeQLZmxqzhN6w1l7tsHDG4oLJuBPkZivL7cgwbiyO6RbaCu3mBG426+uA==
+  /@swc/core-linux-arm64-gnu/1.2.47:
+    cpu:
+      - arm64
+    dev: true
+    engines:
+      node: '>=10'
+    optional: true
+    os:
+      - linux
+    resolution:
+      integrity: sha512-D1+/veC1EdkuIYmwLK/ka22L4HOX4rejmwhBATrfQX6XfewmLe1+y2LxBhkLd0CG1+N5L2/Eoq3ohLjdtoKnwg==
+  /@swc/core-linux-x64-gnu/1.2.47:
+    cpu:
+      - x64
+    dev: true
+    engines:
+      node: '>=10'
+    optional: true
+    os:
+      - linux
+    resolution:
+      integrity: sha512-x9PJcnlVj4bARNB2t7oBn84T+80wItHm2YSWj4L47Us0/oNRB1IYe2icsaAUlgZMviIJTSgS5j8UQCLmg3kiGg==
+  /@swc/core-linux-x64-musl/1.2.47:
+    cpu:
+      - x64
+    dev: true
+    engines:
+      node: '>=10'
+    optional: true
+    os:
+      - linux
+    resolution:
+      integrity: sha512-cTUTxQCejdkBHnzWBiAzy0oMy3gM3MTmwPmHX4hDmM6TO8+MG4D2qlDJEe2cM45R66GdUsl01hXJtcd46MIs6Q==
+  /@swc/core-win32-ia32-msvc/1.2.47:
+    cpu:
+      - ia32
+    dev: true
+    engines:
+      node: '>=10'
+    optional: true
+    os:
+      - win32
+    resolution:
+      integrity: sha512-bysp0kLK8hzqDktDr3N8NHG9bmF+aGO7FSjixLRFeiXhKwVgGoMMMv0S0myHoPUIEo4K3TU7QnGqhpkvohmNaQ==
+  /@swc/core-win32-x64-msvc/1.2.47:
+    cpu:
+      - x64
+    dev: true
+    engines:
+      node: '>=10'
+    optional: true
+    os:
+      - win32
+    resolution:
+      integrity: sha512-rG9S6LRKFrlE/HEZqQRBJ/X9tG9vy/6TdupXpUSNrDUidHJdULsGwqjeXlY4kXhNP/SqpqoFC8l8DwmlEbkQtQ==
+  /@swc/core/1.2.47:
+    dependencies:
+      '@node-rs/helper': 1.1.0
+    dev: true
+    engines:
+      node: '>=10'
+    optionalDependencies:
+      '@swc/core-android-arm64': 1.2.47
+      '@swc/core-darwin-arm64': 1.2.47
+      '@swc/core-darwin-x64': 1.2.47
+      '@swc/core-linux-arm-gnueabihf': 1.2.47
+      '@swc/core-linux-arm64-gnu': 1.2.47
+      '@swc/core-linux-x64-gnu': 1.2.47
+      '@swc/core-linux-x64-musl': 1.2.47
+      '@swc/core-win32-ia32-msvc': 1.2.47
+      '@swc/core-win32-x64-msvc': 1.2.47
+    resolution:
+      integrity: sha512-y1Xfp/8K9jLg1QRBkV7XDpI9wz8yvVjBw60DhtAIzpRnmfv2uDK+y5p0OY+5zC7/OTmUB9DWtyM5YX6snkHqag==
   /@tinyhttp/accepts/1.1.1:
     dependencies:
       es-mime-types: 0.0.16
@@ -5119,6 +5269,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-fcSa+wyTqZa46iWweI7/ZiUfegOZl0SG8+dltIwFXo7+zYU9J9kpS3NB6pZcSlJdhvIwp81Adx2XhZorncxiaA==
+  /fs-readdir-recursive/1.1.0:
+    dev: true
+    resolution:
+      integrity: sha512-GNanXlVr2pf02+sPN40XN8HG+ePaNcvM0q5mZBd668Obwb0yD5GiUbZOFgwn8kGMY6I3mdyDJzieUy3PTYyTRA==
   /fs.realpath/1.0.0:
     resolution:
       integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
@@ -5726,7 +5880,6 @@ packages:
     resolution:
       integrity: sha1-Sb1jMdfQLQwJvJEKEHW6gWW1bfk=
   /inherits/2.0.3:
-    dev: false
     resolution:
       integrity: sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
   /inherits/2.0.4:
@@ -5762,6 +5915,12 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==
+  /interpret/2.2.0:
+    dev: true
+    engines:
+      node: '>= 0.10'
+    resolution:
+      integrity: sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==
   /invert-kv/1.0.0:
     dev: false
     engines:
@@ -5989,6 +6148,12 @@ packages:
       node: '>=0.12.0'
     resolution:
       integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
+  /is-plain-obj/1.1.0:
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-caUMhCnfync8kqOQpKA7OfzVHT4=
   /is-plain-object/2.0.4:
     dependencies:
       isobject: 3.0.1
@@ -7211,7 +7376,6 @@ packages:
   /mkdirp/0.5.5:
     dependencies:
       minimist: 1.2.5
-    dev: false
     hasBin: true
     resolution:
       integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
@@ -7697,6 +7861,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-0CWcCECdMVc2Rw3U5w9ZjqX6ga6ubk1xDVKxtBQPK7wis/0F2r9T6k4ydGYhecl7YUBxBVxhL5oisPsNxAPe2g==
+  /output-file-sync/2.0.1:
+    dependencies:
+      graceful-fs: 4.2.4
+      is-plain-obj: 1.1.0
+      mkdirp: 0.5.5
+    dev: true
+    resolution:
+      integrity: sha512-mDho4qm7WgIXIGf4eYU1RHN2UU5tPfVYVSRwDJw0uTmj35DQUt/eNp19N7v6T3SrR0ESTEf2up2CGO73qI35zQ==
   /p-each-series/2.2.0:
     dev: true
     engines:
@@ -7834,6 +8006,13 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
+  /path/0.12.7:
+    dependencies:
+      process: 0.11.10
+      util: 0.10.4
+    dev: true
+    resolution:
+      integrity: sha1-1NwqUGxM4hl+tIHr/NWzbAFAsQ8=
   /performance-now/2.1.0:
     dev: true
     resolution:
@@ -8038,6 +8217,12 @@ packages:
   /process-nextick-args/2.0.1:
     resolution:
       integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
+  /process/0.11.10:
+    dev: true
+    engines:
+      node: '>= 0.6.0'
+    resolution:
+      integrity: sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
   /progress/2.0.3:
     dev: true
     engines:
@@ -8279,6 +8464,14 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha1-hSBLVNuoLVdC4oyWdW70OvUOM4Q=
+  /rechoir/0.7.0:
+    dependencies:
+      resolve: 1.19.0
+    dev: true
+    engines:
+      node: '>= 0.10'
+    resolution:
+      integrity: sha512-ADsDEH2bvbjltXEP+hTIAmeFekTFK0V2BTxMkok6qILyAJEXV0AFfoWcAq4yfll5VdIMd/RVXq0lR+wQi5ZU3Q==
   /reflect-metadata/0.1.13:
     dev: false
     resolution:
@@ -8736,6 +8929,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
+  /slash/2.0.0:
+    dev: true
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==
   /slash/3.0.0:
     engines:
       node: '>=8'
@@ -9727,6 +9926,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-/s3UsZUrIfa6xDhr7zZhnE9SLQ5RIXyYfiVnMMyMDzOc8WhWN4Nbh36H842OyurKbCDAesZOJaVyvmSl6fhGQw==
+  /util/0.10.4:
+    dependencies:
+      inherits: 2.0.3
+    dev: true
+    resolution:
+      integrity: sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==
   /utils-merge/1.0.1:
     dev: false
     engines:
@@ -10121,6 +10326,8 @@ specifiers:
   '@nestjs/platform-express': ^7.6.8
   '@nestjs/schematics': ^7.2.7
   '@nestjs/testing': ^7.6.8
+  '@swc/cli': ^0.1.34
+  '@swc/core': ^1.2.47
   '@tinyhttp/cookie-parser': ^1.1.12
   '@tinyhttp/cors': ^1.1.1
   '@types/express': ^4.17.11
@@ -10141,7 +10348,6 @@ specifiers:
   pino-pretty: ^4.5.0
   prettier: ^2.2.1
   reflect-metadata: ^0.1.13
-  rimraf: ^3.0.2
   rxjs: ^6.6.3
   supertest: ^6.1.3
   ts-jest: ^26.5.0

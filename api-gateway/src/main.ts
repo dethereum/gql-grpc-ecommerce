@@ -11,9 +11,10 @@ async function bootstrap() {
 
   const configService: ConfigService = app.get(ConfigService);
 
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const GRAPHQL_PORT = configService.get<number>('GRAPHQL_PORT') || 8000;
 
-  const isDev = configService.get<string>('NODE_ENV') == 'development';
+  const isDev = configService.get<string>('NODE_ENV') === 'development';
 
   /* eslint-disable functional/no-expression-statement */
   app.use(

@@ -37,7 +37,7 @@ export class ProductQueryResolver implements OnModuleInit {
 
     return product$.pipe(
       map(({ product_value }) => {
-        return product_value
+        return product_value !== undefined
           ? {
               name: product_value.name,
               description: product_value.description,

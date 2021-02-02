@@ -15,21 +15,26 @@ import { ProductQueryResolver } from './query.resolver';
     {
       provide: 'ProductGrpcClient',
       useFactory: (configService: ConfigService): ClientGrpcProxy => {
-        return ClientProxyFactory.create({
-          transport: Transport.GRPC,
-          options: {
-            url: configService.get<string>('PRODUCT_SVC_URL'),
-            package: 'product',
-            protoPath: join(__dirname, '../../../protos/product/product.proto'),
-            loader: {
-              keepCase: true,
-              enums: String,
-              longs: Number,
-              oneofs: true,
-              arrays: true,
-            },
+        const options = {
+          url: configService.get<string>('PRODUCT_SVC_URL'),
+          package: 'product',
+          protoPath: join(__dirname, '../../../protos/product/product.proto'),
+          loader: {
+            keepCase: true,
+            enums: String,
+            longs: Number,
+            oneofs: true,
+            arrays: true,
           },
+        };
+
+        // eslint-disable-next-line total-functions/no-unsafe-readonly-mutable-assignment
+        const productGrpcClient = ClientProxyFactory.create({
+          transport: Transport.GRPC,
+          options,
         });
+
+        return productGrpcClient;
       },
       inject: [ConfigService],
     },

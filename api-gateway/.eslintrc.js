@@ -89,6 +89,7 @@ module.exports = {
         checkImplicit: true,
       },
     ],
+    "total-functions/require-strict-mode": 0
   },
   overrides: [
     {

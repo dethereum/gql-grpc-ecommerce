@@ -34,7 +34,7 @@ async function bootstrap() {
   );
 }
 
-bootstrap().catch((e) => {
+bootstrap().catch((e: unknown) => {
   console.log('There was an error bootstraping the gql server');
   console.error(e);
 });

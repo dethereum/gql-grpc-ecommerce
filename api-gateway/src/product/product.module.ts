@@ -26,6 +26,7 @@ import { ProductQueryResolver } from './query.resolver';
             loader: {
               keepCase: true,
               enums: String,
+              longs: Number,
               oneofs: true,
               arrays: true,
             },

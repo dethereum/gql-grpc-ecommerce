@@ -1,5 +1,3 @@
-import { join } from 'path';
-
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule, GqlModuleOptions } from '@nestjs/graphql';
@@ -25,10 +23,7 @@ import { ProductModule } from './product/product.module';
       useFactory: (logger: PinoLogger): GqlModuleOptions => ({
         path: '/',
         subscriptions: '/',
-        typePaths: ['./**/*.graphql'],
-        definitions: {
-          path: join(__dirname, 'graphql.ts'),
-        },
+        autoSchemaFile: true,
         logger,
         debug: true,
         cors: false,

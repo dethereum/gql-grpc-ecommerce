@@ -13,13 +13,13 @@ export enum ProductStatus {
 }
 
 export interface GetProductRequest {
-  product_id: number;
+  productId: number;
 }
 
 export interface GetProductResponse {
   /** always set this to "true" when null */
-  product_null: boolean | undefined;
-  product_value: ProductModel | undefined;
+  productNull: boolean | undefined;
+  productValue: ProductModel | undefined;
 }
 
 export interface GetAllProductsRequest {}
@@ -45,7 +45,7 @@ export interface UpdateProductsResponse {
 }
 
 export interface DeleteProductRequest {
-  product_id: number;
+  productId: number;
 }
 
 export interface DeleteProductResponse {
@@ -58,16 +58,16 @@ export interface InsertBulkProductRequest {
 
 export interface InsertBulkProductResponse {
   success: boolean;
-  insert_count: number;
+  insertCount: number;
 }
 
 export interface ProductModel {
-  product_id: number;
+  productId: number;
   name: string;
   description: string;
   price: number;
   status: ProductStatus;
-  created_time: Timestamp | undefined;
+  createdTime: Timestamp | undefined;
 }
 
 export const PRODUCT_PACKAGE_NAME = 'product';

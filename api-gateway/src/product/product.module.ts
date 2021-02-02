@@ -20,7 +20,7 @@ import { ProductQueryResolver } from './query.resolver';
           package: 'product',
           protoPath: join(__dirname, '../../../protos/product/product.proto'),
           loader: {
-            keepCase: true,
+            keepCase: false,
             enums: String,
             longs: Number,
             oneofs: true,

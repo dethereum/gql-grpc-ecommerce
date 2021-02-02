@@ -1,8 +1,7 @@
-import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-
-import { cors } from '@tinyhttp/cors';
+import { NestFactory } from '@nestjs/core';
 import { cookieParser } from '@tinyhttp/cookie-parser';
+import { cors } from '@tinyhttp/cors';
 import { Logger } from 'nestjs-pino';
 
 import { AppModule } from './app.module';

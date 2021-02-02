@@ -1,13 +1,14 @@
-import { Inject, OnModuleInit } from '@nestjs/common';
-import { ClientGrpcProxy } from '@nestjs/microservices';
-import { Args, Query, Resolver, Int } from '@nestjs/graphql';
+import type { OnModuleInit } from '@nestjs/common';
+import type { ProductServiceClient } from './_proto/product/product';
 
+import { Inject } from '@nestjs/common';
+import { Args, Int, Query, Resolver } from '@nestjs/graphql';
+import { ClientGrpcProxy } from '@nestjs/microservices';
 import { PinoLogger } from 'nestjs-pino';
 import { map } from 'rxjs/operators';
 
-import { Product } from './models/product.model';
-import type { ProductServiceClient } from './_proto/product/product';
 import { PRODUCT_SERVICE_NAME } from './_proto/product/product';
+import { Product } from './models/product.model';
 
 @Resolver(() => Product)
 export class ProductQueryResolver implements OnModuleInit {

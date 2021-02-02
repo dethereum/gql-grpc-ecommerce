@@ -1,10 +1,11 @@
 import {
   Field,
+  Float,
+  GraphQLISODateTime,
   Int,
   ObjectType,
-  GraphQLISODateTime,
-  Float,
 } from '@nestjs/graphql';
+
 import { ProductStatus } from './product-status';
 
 @ObjectType()

@@ -1,12 +1,10 @@
-import { join } from 'path';
+import type { ClientGrpcProxy } from '@nestjs/microservices';
+
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { LoggerModule } from 'nestjs-pino';
-import {
-  ClientProxyFactory,
-  Transport,
-  ClientGrpcProxy,
-} from '@nestjs/microservices';
+import { join } from 'path';
 
 import { ProductQueryResolver } from './query.resolver';
 

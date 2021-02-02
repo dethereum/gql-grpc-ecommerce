@@ -1,7 +1,8 @@
+import type { GqlModuleOptions } from '@nestjs/graphql';
+
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { GraphQLModule, GqlModuleOptions } from '@nestjs/graphql';
-
+import { GraphQLModule } from '@nestjs/graphql';
 import { LoggerModule, PinoLogger } from 'nestjs-pino';
 
 import { ProductModule } from './product/product.module';

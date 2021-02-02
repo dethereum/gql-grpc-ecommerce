@@ -1,9 +1,0 @@
-sources:
-  - name: ProductGrpc
-    handler:
-      grpc:
-        endpoint: localhost:5000
-        protoFilePath: ../protos/product.proto
-        serviceName: product
-        packageName: product
-        useHTTPS: false

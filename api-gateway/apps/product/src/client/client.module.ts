@@ -18,7 +18,11 @@ import { ProductQueryResolver } from './query.resolver';
         const options = {
           url: configService.get<string>('PRODUCT_SVC_URL'),
           package: 'product',
-          protoPath: join(__dirname, '../../../protos/product/product.proto'),
+          protoPath: join(
+            __dirname,
+            '../../../../protos/',
+            'product/product.proto',
+          ),
           loader: {
             longs: Number,
             arrays: true,
@@ -38,4 +42,4 @@ import { ProductQueryResolver } from './query.resolver';
   ],
   exports: ['ProductGrpcClient'],
 })
-export class ProductModule {}
+export class ClientModule {}

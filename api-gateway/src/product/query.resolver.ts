@@ -6,8 +6,7 @@ import { Inject } from '@nestjs/common';
 import { Args, Int, Query, Resolver } from '@nestjs/graphql';
 import { ClientGrpcProxy } from '@nestjs/microservices';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
-import { merge } from 'rxjs';
-import { filter, map, mapTo } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { PRODUCT_SERVICE_NAME } from './_proto/product/product';
 import { ProductModel } from './models/product.model';
@@ -41,20 +40,15 @@ export class ProductQueryResolver implements OnModuleInit {
   getProduct(@Args('productId', { type: () => Int }) productId: number) {
     const product$ = this.client.getProduct({ productId });
 
-    const found$ = product$.pipe(
-      filter(({ productValue }) => productValue !== undefined),
-      map(({ productValue }) => ({
-        ...productValue,
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        createdTime: toDate(productValue!.createdTime),
-      })),
+    return product$.pipe(
+      map(({ productValue }) =>
+        productValue !== undefined
+          ? {
+              ...productValue,
+              createdTime: toDate(productValue.createdTime),
+            }
+          : null,
+      ),
     );
-
-    const null$ = product$.pipe(
-      filter(({ productValue }) => productValue === undefined),
-      mapTo(null),
-    );
-
-    return merge(found$, null$);
   }
 }

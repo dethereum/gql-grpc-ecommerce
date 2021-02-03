@@ -1,4 +1,5 @@
 import type { OnModuleInit } from '@nestjs/common';
+import type { Timestamp } from './_proto/google/protobuf/timestamp';
 import type { ProductServiceClient } from './_proto/product/product';
 
 import { Inject } from '@nestjs/common';
@@ -10,6 +11,11 @@ import { filter, map, mapTo } from 'rxjs/operators';
 
 import { PRODUCT_SERVICE_NAME } from './_proto/product/product';
 import { Product } from './models/product.model';
+
+const toDate = (message: Timestamp | undefined) => {
+  // @ts-expect-error this was already checked by filter
+  return new Date(message.seconds * 1000 + message.nanos / 1000);
+};
 
 @Resolver(() => Product)
 export class ProductQueryResolver implements OnModuleInit {
@@ -37,7 +43,11 @@ export class ProductQueryResolver implements OnModuleInit {
 
     const found$ = product$.pipe(
       filter(({ productValue }) => productValue !== undefined),
-      map(({ productValue }) => productValue),
+      map(({ productValue }) => ({
+        ...productValue,
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        createdTime: toDate(productValue!.createdTime),
+      })),
     );
 
     const null$ = product$.pipe(

@@ -21,7 +21,6 @@ import { ProductQueryResolver } from './query.resolver';
           protoPath: join(__dirname, '../../../protos/product/product.proto'),
           loader: {
             longs: Number,
-            oneofs: true,
             arrays: true,
           },
         };

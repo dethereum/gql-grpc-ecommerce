@@ -10,14 +10,14 @@ import { merge } from 'rxjs';
 import { filter, map, mapTo } from 'rxjs/operators';
 
 import { PRODUCT_SERVICE_NAME } from './_proto/product/product';
-import { Product } from './models/product.model';
+import { ProductModel } from './models/product.model';
 
 const toDate = (message: Timestamp | undefined) => {
   // @ts-expect-error this was already checked by filter
   return new Date(message.seconds * 1000 + message.nanos / 1000);
 };
 
-@Resolver(() => Product)
+@Resolver(() => ProductModel)
 export class ProductQueryResolver implements OnModuleInit {
   // eslint-disable-next-line functional/prefer-readonly-type
   private client!: ProductServiceClient;
@@ -37,7 +37,7 @@ export class ProductQueryResolver implements OnModuleInit {
     );
   }
 
-  @Query(() => Product, { name: 'product', nullable: true })
+  @Query(() => ProductModel, { name: 'product', nullable: true })
   getProduct(@Args('productId', { type: () => Int }) productId: number) {
     const product$ = this.client.getProduct({ productId });
 

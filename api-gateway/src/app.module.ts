@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { LoggerModule, PinoLogger } from 'nestjs-pino';
+import { join } from 'path';
 
 import { ProductModule } from './product/product.module';
 @Module({
@@ -22,9 +23,10 @@ import { ProductModule } from './product/product.module';
     GraphQLModule.forRootAsync({
       imports: [LoggerModule],
       useFactory: (logger: PinoLogger): GqlModuleOptions => ({
+        autoSchemaFile: join(__dirname, '../src/schema.gql'),
+        sortSchema: true,
         path: '/',
         subscriptions: '/',
-        autoSchemaFile: true,
         logger,
         debug: true,
         cors: false,

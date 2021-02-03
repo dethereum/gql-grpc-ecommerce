@@ -8,8 +8,8 @@ import {
 
 import { ProductStatus } from './product-status';
 
-@ObjectType()
-export class Product {
+@ObjectType('Product')
+export class ProductModel {
   @Field(() => Int)
   readonly productId!: number;
 

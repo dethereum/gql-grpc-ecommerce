@@ -101,7 +101,7 @@
     "is": 100,
     "detail": true,
     "ignoreFiles": [
-      "src/**/_proto/**/*.ts"
+      "apps/**/_proto/**/*.ts"
     ],
     "project": "tsconfig.json",
     "strict": true
